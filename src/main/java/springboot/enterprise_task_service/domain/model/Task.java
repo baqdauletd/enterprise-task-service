@@ -134,11 +134,34 @@ public class Task {
         return events;
     }
 
+    public static Task restore(
+            UUID id,
+            UUID projectId,
+            String title,
+            String description,
+            TaskStatus status,
+            UUID assigneeId,
+            Instant createdAt,
+            LocalDate dueDate
+    ) {
+        Objects.requireNonNull(id, "id must not be null");
+        Objects.requireNonNull(projectId, "projectId must not be null");
+        Objects.requireNonNull(status, "status must not be null");
+        Objects.requireNonNull(createdAt, "createdAt must not be null");
+
+        Task task = new Task(id, projectId, title, description, status, assigneeId, createdAt,  dueDate);
+
+        // VERY IMPORTANT:
+        // restored aggregates must start with NO domain events
+        task.domainEvents.clear();
+
+        return task;
+    }
+
+
     // --- Getters only (NO setters) ---
 
-    public UUID getId() {
-        return id;
-    }
+    public UUID getId() { return id; }
 
     public UUID getProjectId() {
         return projectId;

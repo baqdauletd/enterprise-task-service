@@ -1,5 +1,6 @@
 package springboot.enterprise_task_service.application.service;
 
+import org.springframework.stereotype.Service;
 import springboot.enterprise_task_service.application.event.DomainEventPublisher;
 import springboot.enterprise_task_service.domain.model.Task;
 import springboot.enterprise_task_service.domain.repository.TaskRepository;
@@ -7,6 +8,7 @@ import springboot.enterprise_task_service.domain.repository.TaskRepository;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Service
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
