@@ -1,7 +1,6 @@
 package springboot.enterprise_task_service.infrastructure.persistance.entity;
 
 import lombok.Getter;
-import springboot.enterprise_task_service.domain.model.TaskStatus;
 import jakarta.persistence.*;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -35,7 +34,7 @@ public class TaskEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Getter
-    private TaskStatus status;
+    private TaskStatusEntity statusEntity;
 
     @Column(nullable = false,  updatable = false)
     @Getter
@@ -54,7 +53,7 @@ public class TaskEntity {
             UUID projectId,
             String title,
             String description,
-            TaskStatus status,
+            TaskStatusEntity statusEntity,
             UUID assigneeId,
             Instant createdAt,
             LocalDate dueDate
@@ -62,7 +61,7 @@ public class TaskEntity {
         this.id = id;
         this.projectId = projectId;
         this.assigneeId = assigneeId;
-        this.status = status;
+        this.statusEntity = statusEntity;
         this.createdAt = createdAt;
         this.description = description;
         this.dueDate = dueDate;

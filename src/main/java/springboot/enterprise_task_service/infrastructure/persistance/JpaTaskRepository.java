@@ -3,7 +3,7 @@ package springboot.enterprise_task_service.infrastructure.persistance;
 import springboot.enterprise_task_service.domain.model.Task;
 import springboot.enterprise_task_service.domain.repository.TaskRepository;
 import springboot.enterprise_task_service.infrastructure.persistance.entity.TaskEntity;
-import springboot.enterprise_task_service.infrastructure.persistance.mapper.TaskMapper;
+import springboot.enterprise_task_service.infrastructure.persistance.mapper.TaskEntityMapper;
 import springboot.enterprise_task_service.infrastructure.persistance.spring.SpringDataTaskRepository;
 import org.springframework.stereotype.Repository;
 
@@ -22,12 +22,12 @@ public class JpaTaskRepository implements TaskRepository {
     @Override
     public Optional<Task> findById(UUID taskId) {
         return springRepository.findById(taskId)
-                .map(TaskMapper::toDomain);
+                .map(TaskEntityMapper::toDomain);
     }
 
     @Override
     public void save(Task task) {
-        TaskEntity entity = TaskMapper.toEntity(task);
+        TaskEntity entity = TaskEntityMapper.toEntity(task);
         springRepository.save(entity);
     }
 

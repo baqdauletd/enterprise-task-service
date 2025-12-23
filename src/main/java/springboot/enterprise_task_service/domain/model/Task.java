@@ -1,5 +1,7 @@
 package springboot.enterprise_task_service.domain.model;
 
+import lombok.Builder;
+import lombok.Getter;
 import springboot.enterprise_task_service.domain.model.exception.InvalidTaskStateTransitionException;
 import springboot.enterprise_task_service.domain.event.DomainEvent;
 import springboot.enterprise_task_service.domain.event.TaskStatusChangedEvent;
@@ -9,23 +11,28 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+@Builder
 public class Task {
 
     private final List<DomainEvent> domainEvents = new ArrayList<>();
 
+    @Getter
     private final UUID id;
+    @Getter
     private final UUID projectId;
-
+    @Getter
     private String title;
+    @Getter
     private String description;
-
+    @Getter
     private TaskStatus status;
+    @Getter
     private UUID assigneeId;
-
+    @Getter
     private final Instant createdAt;
+    @Getter
     private LocalDate dueDate;
 
     private Task(
@@ -156,39 +163,6 @@ public class Task {
         task.domainEvents.clear();
 
         return task;
-    }
-
-
-    // --- Getters only (NO setters) ---
-
-    public UUID getId() { return id; }
-
-    public UUID getProjectId() {
-        return projectId;
-    }
-
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    public UUID getAssigneeId() {
-        return assigneeId;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
     }
 }
 
