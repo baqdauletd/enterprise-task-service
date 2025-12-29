@@ -20,7 +20,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public UUID createTask(UUID projectId, String title, String description, LocalDate dueTime) {
+    public Task createTask(UUID projectId, String title, String description, LocalDate dueTime) {
         Task task = Task.create(projectId,  title, description, dueTime);
 
         taskRepository.save(task);
@@ -30,7 +30,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void assignTask(UUID taskId, UUID assigneeId) {
+    public Task assignTask(UUID taskId, UUID assigneeId) {
         Task task = loadTask(taskId);
 
         task.assignTo(assigneeId);
@@ -40,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void startTask(UUID taskId) {
+    public Task startTask(UUID taskId) {
         Task task = loadTask(taskId);
 
         task.start();
@@ -50,7 +50,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void completeTask(UUID taskId) {
+    public Task completeTask(UUID taskId) {
         Task task = loadTask(taskId);
 
         task.complete();
@@ -60,7 +60,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void archiveTask(UUID taskId) {
+    public Task archiveTask(UUID taskId) {
         Task task = loadTask(taskId);
 
         task.archive();

@@ -1,17 +1,21 @@
 package springboot.enterprise_task_service.application.service;
 
+import springboot.enterprise_task_service.domain.model.Task;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
 public interface TaskService {
 
-    UUID createTask(UUID projectId,  String title, String description, LocalDate dueDate);
+    Task createTask(UUID projectId, String title, String description, LocalDate dueDate);
 
-    void assignTask(UUID taskId, UUID assigneeId);
+    Task assignTask(UUID taskId, UUID assigneeId);
 
-    void startTask(UUID taskId);
+    Task startTask(UUID taskId);
 
-    void completeTask(UUID taskId);
+    Task completeTask(UUID taskId);
 
-    void archiveTask(UUID taskId);
+    Task archiveTask(UUID taskId);
+
+    Task getTask(UUID taskId);
 }
